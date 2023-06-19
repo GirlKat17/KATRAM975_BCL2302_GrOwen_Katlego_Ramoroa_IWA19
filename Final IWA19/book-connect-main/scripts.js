@@ -28,6 +28,8 @@ let page = 1; //assigned 1 to variable
 /**
  * this object is the themes setting of two option light and dark at the moment the object has been created but it is not yet used
  */
+
+//--------------- Dark and light mode-------------/////
 const css = {
     day : {
         dark: '10, 10, 20',
@@ -49,6 +51,8 @@ const fragment = document.createDocumentFragment() // used to append multiple in
  * the could be clicked to display the book's details. used set attribute to give each button its own space so that
  * when book is clicked it display the info of the clicked element
  */
+//--------- Layout for opening 36 pg on html----------///
+
 let extracted = books.slice(0, 36)
   function displayBooksList(DomAppend, bookList){
     for(const { author, image, title, id } of bookList){
@@ -108,6 +112,9 @@ dataSearchAuthors.appendChild(authorOptions)
  *
  *
 */
+
+
+
 dataSearchCancel.addEventListener('click', ()=>{
     searchOverlay.open = false
 });
@@ -146,6 +153,8 @@ dataHeaderSearch.addEventListener('click', () =>{
  *
  *
  */
+//---------- Search ----------------////
+
 dataSearchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     searchOverlay.open = false
@@ -176,6 +185,7 @@ displayBooksList(dataSearchResults, filteredBooks)
     dataSearchForm.reset()
     document.querySelector("[data-backdrop]").style.display = "none"; //backdrop div
 })
+//-------------- search ends here-----------//
 /**
  *  This code is used to display a list of books on a web page. When the "ShowMore" button is clicked, the code displays additional books.
  *  The code uses an event listener to listen for clicks on the "ShowMore" button. When the button is clicked, the code increments the
@@ -188,6 +198,10 @@ displayBooksList(dataSearchResults, filteredBooks)
  * including the book's image, title, and author. The function then appends the button element to the fragment and the fragment
  * to the web page.
  */
+
+//---------- Show more---------------///
+
+
 let ShowMorePosition = 0;
 let ShowMore = 36
 dataListButton.addEventListener("click", () => {
@@ -209,6 +223,7 @@ dataListButton.innerHTML = /* html */ [
 * The code sets the inner HTML of dataListButton to create a "Show more" button that displays the remaining number of books.
 * The code then detects the user's system color scheme and sets the value of dataSettingsTheme and the visual variable accordingly.
 *  Finally, the code sets the color properties of the page based on whether the user's system is set to a dark or light color scheme.
+//-------- Dark/light mode settings ---//
 */
 dataSettingsTheme.value = window.matchMedia('(prefers-color-scheme: dark)').books ? 'night' : 'day';
 const visual = window.matchMedia('(prefers-color-scheme: dark)').books? 'night' : 'day';
@@ -235,6 +250,15 @@ dataSettingOverlay.addEventListener("submit", (event) =>  {
     document.documentElement.style.setProperty('--color-light', css[result.theme].light);
     dataSettingOverlay.open = false;
 })
+
+
+//-------- Show more ends here----///
+
+
+
+
+
+
 /**
  *
  * @param {*} preview
@@ -245,6 +269,7 @@ dataSettingOverlay.addEventListener("submit", (event) =>  {
  * Once the active book is found, the function updates various elements in the modal with information about the book,
  * such as the book's image, title, author, and description.
  */
+//-------------- Preview------------//
 function preview(preview){
     preview.addEventListener('click', (event) => {
         dataListActive.open = true
@@ -289,7 +314,7 @@ preview(dataSearchResults)
 
 
 
-// genres = document.createDocumentFragment()
+//  genres = document.createDocumentFragment()
 // element = document.createElement('option')
 // element.value = 'any'
 // element = 'All Genres'
